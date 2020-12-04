@@ -62,6 +62,71 @@
       <h1 class="page-type-title"></h1>
       
         
+          <article id="post-分割数组为连续子序列" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/viaeou.github.io/2020/12/04/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E4%B8%BA%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97/">分割数组为连续子序列</a>
+    </h2>
+  
+  
+
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/viaeou.github.io/2020/12/04/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E4%B8%BA%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97/" class="article-date">
+  <time datetime="2020-12-04T14:37:56.000Z" itemprop="datePublished">2020-12-04</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <blockquote>
+<ol start="659">
+<li>给你一个按升序排序的整数数组 num（可能包含重复数字），请你将它们分割成一个或多个子序列，其中每个子序列都由连续整数组成且长度至少为 3 。<br>如果可以完成上述分割，则返回 true ；否则，返回 false 。</li>
+</ol>
+</blockquote>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="">https://leetcode-cn.com/problems/split-array-into-consecutive-subsequences</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPossible</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, PriorityQueue&lt;Integer&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, PriorityQueue&lt;Integer&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!map.containsKey(x)) &#123;</span><br><span class="line">                map.put(x, <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(x-<span class="number">1</span>)) &#123;</span><br><span class="line">                <span class="keyword">int</span> prevLength = map.get(x - <span class="number">1</span>).poll();</span><br><span class="line">                <span class="keyword">if</span> (map.get(x - <span class="number">1</span>).isEmpty()) &#123;</span><br><span class="line">                    map.remove(x - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                map.get(x).offer(prevLength + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                map.get(x).offer(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Set&lt;Map.Entry&lt;Integer, PriorityQueue&lt;Integer&gt;&gt;&gt; entrySet = map.entrySet();</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Integer, PriorityQueue&lt;Integer&gt;&gt; entry : entrySet) &#123;</span><br><span class="line">            PriorityQueue&lt;Integer&gt; queue = entry.getValue();</span><br><span class="line">            <span class="keyword">if</span> (queue.peek() &lt; <span class="number">3</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/04/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E4%B8%BA%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97/" data-id="ckiado6e10004429k7a1wcqsu" class="article-share-link">
+        分享
+      </a>
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/viaeou.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag">每日一题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+        
           <article id="post-单调栈和滑动窗" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -112,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/%E5%8D%95%E8%B0%83%E6%A0%88%E5%92%8C%E6%BB%91%E5%8A%A8%E7%AA%97/" data-id="cki8wvqs30003mk9kbmnf2rjt" class="article-share-link">
+      <a data-url="http://example.com/2020/12/02/%E5%8D%95%E8%B0%83%E6%A0%88%E5%92%8C%E6%BB%91%E5%8A%A8%E7%AA%97/" data-id="ckiado6e20005429k0dj80erq" class="article-share-link">
         分享
       </a>
       
@@ -175,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/spring/" data-id="cki8wvqru0000mk9k32si92v2" class="article-share-link">
+      <a data-url="http://example.com/2020/11/30/spring/" data-id="ckiado6dx0001429k1k1gajb7" class="article-share-link">
         分享
       </a>
       
@@ -236,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/29/%E9%A6%96%E7%AF%87/" data-id="cki8wvqs40004mk9keaejculw" class="article-share-link">
+      <a data-url="http://example.com/2020/11/29/%E9%A6%96%E7%AF%87/" data-id="ckiado6dz0002429k21txfebt" class="article-share-link">
         分享
       </a>
       
@@ -307,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/29/hello-world/" data-id="cki8wvqs00001mk9kgji49a15" class="article-share-link">
+      <a data-url="http://example.com/2020/11/29/hello-world/" data-id="ckiado6dr0000429k2qo7b7jl" class="article-share-link">
         分享
       </a>
       
